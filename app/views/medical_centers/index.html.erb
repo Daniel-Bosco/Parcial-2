@@ -1,0 +1,39 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Medical Centers</h1>
+
+<table class="table table-striped table-hover">
+  <thead class="table-dark">
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Address</th>
+      <th>Phone number</th>
+      <th>Medical center type</th>
+      <th>Guards count</th>
+      <th>Appointments count</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @medical_centers.each do |medical_center| %>
+      <tr>
+        <td><%= medical_center.name %></td>
+        <td><%= medical_center.description %></td>
+        <td><%= medical_center.address %></td>
+        <td><%= medical_center.phone_number %></td>
+        <td><%= medical_center.medical_center_type_id %></td>
+        <td><%= medical_center.guards.count %></td>
+        <td><%= medical_center.appointments.count %></td>
+        <td><% if can? :show, MedicalCenter %><%= link_to 'Show', medical_center %><% end %></td>
+        <td><% if can? :update, MedicalCenter %><%= link_to 'Edit', edit_medical_center_path(medical_center) %><% end %></td>
+        <td><% if can? :destroy, MedicalCenter %><%= link_to 'Destroy', medical_center, method: :delete, data: { confirm: 'Are you sure?' } %><% end %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Medical Center', new_medical_center_path %>
